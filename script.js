@@ -1,42 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- Image Carousel ---
-  const track = document.querySelector('.carousel-track');
-  const slides = Array.from(track.children);
-  const nextButton = document.querySelector('.next');
-  const prevButton = document.querySelector('.prev');
-  let currentIndex = 0;
+ const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const nextButton = document.querySelector('.next');
+const prevButton = document.querySelector('.prev');
+const caption = document.getElementById('carousel-caption');
 
-  // Position slides
-  slides.forEach((slide, index) => {
-    slide.style.left = `${index * 100}%`;
-  });
+let currentSlideIndex = 0;
 
-  function moveToSlide(index) {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    document.querySelector('.carousel-slide.current-slide').classList.remove('current-slide');
-    slides[index].classList.add('current-slide');
-    currentIndex = index;
-    updateCaption();
+// Set initial caption
+updateCaption();
+
+// Update slide position based on index
+function updateSlidePosition() {
+  track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+  updateCaption();
+}
+
+// Update caption text based on current slide
+function updateCaption() {
+  const currentSlide = slides[currentSlideIndex];
+  const img = currentSlide.querySelector('img');
+  caption.textContent = img.alt || '';
+}
+
+// Button navigation
+nextButton.addEventListener('click', () => {
+  currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+  updateSlidePosition();
+});
+
+prevButton.addEventListener('click', () => {
+  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+  updateSlidePosition();
+});
+
+// Touch Swipe Support
+
+
+let startX = 0;
+let endX = 0;
+
+track.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener('touchmove', (e) => {
+  endX = e.touches[0].clientX;
+});
+
+track.addEventListener('touchend', () => {
+  const threshold = 50;
+  const deltaX = endX - startX;
+
+  if (deltaX > threshold) {
+    // Swiped right
+    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+    updateSlidePosition();
+  } else if (deltaX < -threshold) {
+    // Swiped left
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    updateSlidePosition();
   }
 
-  function updateCaption() {
-    const currentImage = slides[currentIndex].querySelector('img');
-    const caption = currentImage ? currentImage.alt : '';
-    document.getElementById('carousel-caption').textContent = caption;
-  }
-
-  nextButton.addEventListener('click', () => {
-    const nextIndex = (currentIndex + 1) % slides.length;
-    moveToSlide(nextIndex);
-  });
-
-  prevButton.addEventListener('click', () => {
-    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-    moveToSlide(prevIndex);
-  });
-
-  moveToSlide(0);
-
+  // Reset swipe values
+  startX = 0;
+  endX = 0;
+});
   // --- Form Validation ---
   const form = document.getElementById('contact-form');
   const confirmation = document.getElementById('form-confirmation');
