@@ -227,7 +227,7 @@ textarea:invalid {
 }
 
 /* Mobile Responsive Styles */
-@media (max-width: 385px) {
+@media (max-width: 390px) {
   header h1 {
     font-size: 1.5rem;
   }
