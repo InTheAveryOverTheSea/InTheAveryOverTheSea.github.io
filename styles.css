@@ -200,9 +200,9 @@ section {
 
 /* Confirmation message animation */
 .confirmation-message {
+  display: none;
   color: green;
-  font-weight: bold;
-  margin-top: 15px;
+  margin-top: 1em;
   text-align: center;
   font-size: 1.1rem;
   opacity: 0;
