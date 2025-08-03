@@ -213,6 +213,11 @@ section {
   opacity: 1;
   animation: fadeIn 1s ease-in-out;
 }
+#contact {
+  > p{
+    color: white;
+  }
+}
 
 /* Highlight invalid fields */
 input:invalid,
@@ -274,4 +279,5 @@ textarea:invalid {
   .contact-form button {
     font-size: 0.95rem;
   }
+
 }
