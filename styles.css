@@ -29,6 +29,7 @@ header {
   font: roboto;
   color: #fff;
   padding: 20px;
+  gap: 10px;
   text-align: center;
 }
 
@@ -279,5 +280,27 @@ textarea:invalid {
   .contact-form button {
     font-size: 0.95rem;
   }
+@media (max-width: 430px) {
+  body {
+    padding: 10px;
+  }
+
+  section {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .about-container {
+    gap: 10px;
+  }
+
+  .carousel-caption-bar {
+    font-size: 0.9rem;
+  }
+
+  .contact-form {
+    gap: 10px;
+  }
+}
 
 }
