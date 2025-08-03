@@ -83,6 +83,8 @@ section {
 .carousel {
   position: relative;
   overflow: hidden;
+  background-color: #7a6cd4;
+  color: white;
 }
 
 .carousel-track-container {
