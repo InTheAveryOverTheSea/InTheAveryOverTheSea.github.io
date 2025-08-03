@@ -76,6 +76,10 @@ section {
 }
 
 /* Carousel */
+.gallery {
+  background-color: #7a6cd4;
+  color: white;
+}
 .carousel {
   position: relative;
   overflow: hidden;
@@ -136,6 +140,7 @@ section {
   border-radius: 0 0 10px 10px;
   font-size: 1rem;
   margin-top: -10px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Contact Form */
